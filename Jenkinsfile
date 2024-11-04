@@ -14,7 +14,7 @@ pipeline {
           image: sysnet4admin/kustomize:3.6.1
           tty: true
           volumeMounts:
-          - mountPath: /bin/kubectl
+          - mountPath: /usr/local/bin/kubectl
             name: kubectl
           command:
           - cat
@@ -22,14 +22,14 @@ pipeline {
         volumes:
         - name: kubectl
           hostPath:
-            path: /bin/kubectl
+            path: /usr/local/bin/kubectl
       '''
     }
   }
   stages {
     stage('git scm update'){
       steps {
-        git url: 'https://github.com/IaC-Source/blue-green.git', branch: 'main'
+        git url: 'https://github.com/rednine9777/blue-green.git', branch: 'main'
       }
     }
     stage('define tag'){
